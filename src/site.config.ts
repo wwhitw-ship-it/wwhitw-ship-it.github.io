@@ -6,8 +6,8 @@ export const SITE = {
   description: '記錄生活、想法與學習筆記。',
   author: '作者名稱',
   lang: 'zh-Hant',
-  /** 配色：cream（淺黃）、yellow（亮黃）、gray（灰）、lavender（淡紫） */
-  theme: 'cream' as 'cream' | 'yellow' | 'gray' | 'lavender',
+  /** 配色：cream（米白，預設）、butter（奶油黃）、yellow（亮黃）、gray（灰）、lavender（淡紫） */
+  theme: 'cream' as 'cream' | 'butter' | 'yellow' | 'gray' | 'lavender',
   /** 首頁是否顯示「＋」寫文章按鈕（連到後台） */
   showWriteButton: true,
 };

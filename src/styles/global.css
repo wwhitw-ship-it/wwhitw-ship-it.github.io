@@ -1,19 +1,25 @@
 /* ===== 配色（在 src/site.config.ts 的 theme 切換） ===== */
 :root, [data-theme='cream'] {
-  --bg: #fcf7da;        /* 背景 */
-  --text: #2a2418;      /* 文字 */
-  --muted: #7d7356;     /* 次要文字 */
-  --pill: #ecd59c;      /* 日期膠囊 */
-  --line: #e6d9a6;      /* 細線 */
-  --dot: #b8965a;       /* 小圓點 */
-  --dot-ring: #e3cf95;  /* 小圓點外圈 */
-  --bar: #fefbe9;       /* 底部導覽列 */
-  --bar-edge: #ebdfae;
-  --icon: #d0ad66;      /* 圖示 */
-  --icon-shade: #b48f4b;
-  --icon-line: #fdf6d8;
-  --accent: #8a6a2c;    /* 連結 */
-  --code-bg: #f5ecc4;
+  --bg: #faf7ef;        /* 背景：米白紙張色 */
+  --text: #2d2924;      /* 文字 */
+  --muted: #8a8174;     /* 次要文字 */
+  --pill: #efe6d2;      /* 日期膠囊 */
+  --line: #e7e0d1;      /* 細線 */
+  --dot: #b9a27c;       /* 小圓點 */
+  --dot-ring: #ece3cf;  /* 小圓點外圈 */
+  --bar: #fdfbf6;       /* 底部導覽列 */
+  --bar-edge: #e9e2d3;
+  --icon: #cdb791;      /* 圖示 */
+  --icon-shade: #b09a72;
+  --icon-line: #fbf8f1;
+  --accent: #8b6f45;    /* 連結 */
+  --code-bg: #f3eee3;
+}
+/* 原本較黃的奶油色 */
+[data-theme='butter'] {
+  --bg: #fcf7da; --text: #2a2418; --muted: #7d7356; --pill: #ecd59c; --line: #e6d9a6;
+  --dot: #b8965a; --dot-ring: #e3cf95; --bar: #fefbe9; --bar-edge: #ebdfae;
+  --icon: #d0ad66; --icon-shade: #b48f4b; --icon-line: #fdf6d8; --accent: #8a6a2c; --code-bg: #f5ecc4;
 }
 [data-theme='yellow'] {
   --bg: #fad900; --text: #221c05; --muted: #6b5a0e; --pill: #e3bf22; --line: #dcbc0e;

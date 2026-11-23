@@ -44,7 +44,7 @@ git push -u origin main
 5. 按 Generate，複製 token（只會顯示一次，請自己保存好，不要給別人）
 
 ### 開始寫
-1. 打開 `https://你的網址/admin/`
+1. 打開 `https://bettyer.com/admin/`（綁定網域前是 `https://你的帳號.github.io/my-blog/admin/`）
 2. 選 **Sign In Using Access Token**，貼上 token
 3. 點「文章」→「New」，填寫標題、日期、內文、上傳圖片
 4. 按 **Save**，1～2 分鐘後網站自動更新
@@ -57,7 +57,7 @@ git push -u origin main
 
 ## 三、綁定自訂網域（買好網域後）
 
-1. GitHub 儲存庫 → **Settings** → **Pages** → **Custom domain** 填入你的網域（例如 `blog.example.com` 或 `example.com`），按 Save
+1. GitHub 儲存庫 → **Settings** → **Pages** → **Custom domain** 填入 `bettyer.com`，按 Save
 2. 到你購買網域的地方（GoDaddy、Namecheap、Cloudflare、Gandi…）設定 DNS：
 
    **用子網域（例如 `blog.example.com`）** — 新增一筆：
@@ -66,7 +66,7 @@ git push -u origin main
    | --- | --- | --- |
    | CNAME | `blog` | `你的帳號.github.io` |
 
-   **用主網域（例如 `example.com`）** — 新增四筆 A 記錄，再加一筆 `www`：
+   **用主網域 `bettyer.com`（建議）** — 新增四筆 A 記錄，再加一筆 `www`：
 
    | 類型 | 名稱 | 值 |
    | --- | --- | --- |
