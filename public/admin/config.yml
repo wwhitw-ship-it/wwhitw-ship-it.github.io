@@ -1,7 +1,7 @@
 # 部落格後台設定（Sveltia CMS）
 backend:
   name: github
-  repo: YOUR_GITHUB_NAME/my-blog   # ✏️ 改成你的「GitHub帳號/儲存庫名稱」
+  repo: wwhitw-ship-it/wwhitw-ship-it.github.io
   branch: main
   commit_messages:
     create: '新增文章：{{slug}}'

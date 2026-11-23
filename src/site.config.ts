@@ -1,6 +1,6 @@
 // ✏️ 在這裡修改部落格的基本資訊
 export const SITE = {
-  title: '我的部落格',
+  title: 'bettyer',
   /** 首頁標題第二行（斜體），建議用英文，例如 Journal、Notes、Diary */
   tagline: 'Journal',
   description: '記錄生活、想法與學習筆記。',
