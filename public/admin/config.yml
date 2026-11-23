@@ -1,0 +1,33 @@
+# 部落格後台設定（Sveltia CMS）
+backend:
+  name: github
+  repo: YOUR_GITHUB_NAME/my-blog   # ✏️ 改成你的「GitHub帳號/儲存庫名稱」
+  branch: main
+  commit_messages:
+    create: '新增文章：{{slug}}'
+    update: '更新文章：{{slug}}'
+    delete: '刪除文章：{{slug}}'
+    uploadMedia: '上傳圖片：{{path}}'
+    deleteMedia: '刪除圖片：{{path}}'
+
+locale: zh_Hant
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: posts
+    label: 文章
+    label_singular: 文章
+    folder: src/content/posts
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    sortable_fields: [date, title]
+    summary: '{{title}}（{{date}}）'
+    fields:
+      - { label: 標題, name: title, widget: string }
+      - { label: 發佈日期, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 摘要, name: description, widget: text, required: false, hint: 顯示在文章列表與搜尋結果 }
+      - { label: 標籤, name: tags, widget: list, required: false, hint: 用逗號分隔 }
+      - { label: 封面圖片, name: cover, widget: image, required: false }
+      - { label: 草稿（勾選後不會公開）, name: draft, widget: boolean, default: false, required: false }
+      - { label: 內文, name: body, widget: markdown }

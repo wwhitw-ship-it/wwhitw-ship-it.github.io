@@ -1,0 +1,84 @@
+:root {
+  --bg: #fbf9f4;
+  --surface: #ffffff;
+  --text: #22201c;
+  --muted: #6b665d;
+  --line: #e6e1d6;
+  --accent: #2f5d50;
+  --accent-soft: #e3ede8;
+  --code-bg: #f1ede4;
+  --font: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171816; --surface: #1f211e; --text: #e9e6df; --muted: #a29d92;
+    --line: #33352f; --accent: #8cc4b0; --accent-soft: #23332d; --code-bg: #262823;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font); font-size: 17px; line-height: 1.8;
+  display: flex; flex-direction: column; min-height: 100vh;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.wrap { width: 100%; max-width: 720px; margin: 0 auto; padding: 0 20px; }
+main.wrap { flex: 1; padding-top: 32px; padding-bottom: 64px; }
+
+.site-header { border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+.brand { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+nav { display: flex; gap: 20px; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover { color: var(--accent); }
+
+.site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.site-footer .wrap { display: flex; justify-content: space-between; padding: 24px 20px; }
+.site-footer a { color: var(--muted); }
+
+.hero { padding: 24px 0 32px; }
+.hero h1 { font-size: 2.2rem; line-height: 1.3; margin: 0 0 8px; }
+.hero p { color: var(--muted); margin: 0; }
+h1 { line-height: 1.35; }
+
+.list { display: grid; gap: 4px; }
+.card { padding: 20px 0; border-top: 1px solid var(--line); }
+.card-link { text-decoration: none; color: var(--text); }
+.card-link:hover h2 { color: var(--accent); }
+.card h2 { font-size: 1.35rem; margin: 0 0 4px; line-height: 1.45; transition: color .15s; }
+.meta { color: var(--muted); font-size: .9rem; margin: 0; }
+.excerpt { margin: 8px 0 0; }
+.badge { font-size: .75rem; background: var(--accent-soft); color: var(--accent); padding: 2px 8px; border-radius: 99px; margin-left: 8px; vertical-align: middle; }
+.empty { color: var(--muted); }
+
+.tags { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tags a { display: inline-block; font-size: .85rem; background: var(--accent-soft); color: var(--accent); padding: 2px 10px; border-radius: 99px; text-decoration: none; }
+.tags.big a { font-size: 1rem; padding: 6px 14px; }
+.tags small { opacity: .7; }
+
+.post header { margin-bottom: 28px; }
+.post h1 { font-size: 2rem; margin: 0 0 8px; }
+.cover { width: 100%; border-radius: 10px; margin-bottom: 28px; }
+.prose { overflow-wrap: anywhere; }
+.prose h2 { font-size: 1.5rem; margin-top: 2.2em; }
+.prose h3 { font-size: 1.2rem; margin-top: 1.8em; }
+.prose img { max-width: 100%; height: auto; border-radius: 8px; }
+.prose blockquote { margin: 1.5em 0; padding: 4px 20px; border-left: 4px solid var(--accent); color: var(--muted); background: var(--surface); }
+.prose code { font-family: var(--mono); font-size: .88em; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
+.prose pre { padding: 16px; border-radius: 8px; overflow-x: auto; font-size: .88rem; line-height: 1.6; }
+.prose pre code { background: none; padding: 0; }
+.prose table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
+.prose th, .prose td { border: 1px solid var(--line); padding: 8px 12px; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2.5em 0; }
+
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+.pager a { text-decoration: none; max-width: 48%; }
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 1.8rem; }
+  .post h1 { font-size: 1.6rem; }
+  nav { gap: 14px; }
+}

@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+---
+<Base title="關於">
+  <article class="post">
+    <h1>關於</h1>
+    <div class="prose">
+      <p>嗨，我是 {SITE.author}。這裡是我的部落格。</p>
+      <p>（✏️ 編輯 <code>src/pages/about.astro</code> 來修改這一頁。）</p>
+    </div>
+  </article>
+</Base>

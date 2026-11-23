@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { render } from 'astro:content';
+import { url } from '../../site.config';
+import { getPosts, formatDate, readingTime, asset, type Post } from '../../lib';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+interface Props { post: Post; newer?: Post; older?: Post }
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const cover = asset(post.data.cover);
+---
+<Base title={post.data.title} description={post.data.description} image={cover || undefined}>
+  <article class="post">
+    <header>
+      <h1>{post.data.title}</h1>
+      <p class="meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        · {readingTime(post.body)} 分鐘閱讀
+      </p>
+      {post.data.tags.length > 0 && (
+        <ul class="tags">
+          {post.data.tags.map((t) => <li><a href={url(`tags/${encodeURIComponent(t)}/`)}>#{t}</a></li>)}
+        </ul>
+      )}
+    </header>
+    {cover && <img class="cover" src={cover} alt="" />}
+    <div class="prose"><Content /></div>
+  </article>
+  <nav class="pager">
+    {newer ? <a href={url(`posts/${newer.id}/`)}>← {newer.data.title}</a> : <span />}
+    {older ? <a href={url(`posts/${older.id}/`)}>{older.data.title} →</a> : <span />}
+  </nav>
+</Base>

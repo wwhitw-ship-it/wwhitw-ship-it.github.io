@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { SITE } from '../site.config';
+import { getPosts } from '../lib';
+const posts = await getPosts();
+---
+<Base>
+  <section class="hero">
+    <h1>{SITE.title}</h1>
+    <p>{SITE.description}</p>
+  </section>
+  {posts.length === 0 ? <p class="empty">還沒有文章，到 /admin 寫第一篇吧！</p> :
+    <div class="list">{posts.map((post) => <PostCard post={post} />)}</div>}
+</Base>

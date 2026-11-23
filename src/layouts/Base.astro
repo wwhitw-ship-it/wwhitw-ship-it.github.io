@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import { SITE, url } from '../site.config';
+
+interface Props { title?: string; description?: string; image?: string }
+const { title, description = SITE.description, image } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.title}` : SITE.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href={url('rss.xml')} />
+    <link rel="sitemap" href={url('sitemap-index.xml')} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={url()}>{SITE.title}</a>
+        <nav>
+          <a href={url()}>文章</a>
+          <a href={url('tags')}>標籤</a>
+          <a href={url('about')}>關於</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© {new Date().getFullYear()} {SITE.author}</span>
+        <a href={url('rss.xml')}>RSS</a>
+      </div>
+    </footer>
+  </body>
+</html>
