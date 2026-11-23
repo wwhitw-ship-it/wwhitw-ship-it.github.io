@@ -15,6 +15,31 @@
   --accent: #8b6f45;    /* 連結 */
   --code-bg: #f3eee3;
 }
+/* ===== 活力點綴（在 src/site.config.ts 的 accent 切換，只作用於 cream 配色） ===== */
+/* A. 向日葵：單一亮黃強調色 */
+[data-theme='cream'][data-accent='sunny'] {
+  --pill: #f8df8f; --dot: #e4a72a; --dot-ring: #fcedbd; --line: #ece3cc;
+  --icon: #f0c04a; --icon-shade: #d99a1c; --accent: #b5700f; --hero-em: #d68a10;
+  --today: #b5700f; --fab: #e4a72a; --fab-edge: #f3d27a; --code-bg: #fbf1d2;
+}
+/* B. 繽紛：每列輪流使用不同粉彩色 */
+[data-theme='cream'][data-accent='colorful'] {
+  --pill: #f9e199; --dot: #e3a62b; --dot-ring: #fcedc0; --line: #ece4d3;
+  --accent: #c1603a; --hero-em: #c9633b; --today: #5f8a5a; --fab: #c9633b; --fab-edge: #f1c6ae;
+  --code-bg: #f6efe0;
+}
+[data-accent='colorful'] .rows .row:nth-child(5n+2) { --pill: #f9d2bb; --dot: #d9764a; --dot-ring: #fbe2d3; }
+[data-accent='colorful'] .rows .row:nth-child(5n+3) { --pill: #d3e6c8; --dot: #6e9b62; --dot-ring: #e3efdc; }
+[data-accent='colorful'] .rows .row:nth-child(5n+4) { --pill: #cfe0f2; --dot: #5b88b8; --dot-ring: #e0ebf7; }
+[data-accent='colorful'] .rows .row:nth-child(5n+5) { --pill: #e3d5f0; --dot: #8c6bb3; --dot-ring: #eee5f6; }
+[data-accent='colorful'] .tab-bar a:nth-child(1) { --icon: #efbd45; --icon-shade: #d99a1c; }
+[data-accent='colorful'] .tab-bar a:nth-child(2) { --icon: #ee9a72; --icon-shade: #d9764a; }
+[data-accent='colorful'] .tab-bar a:nth-child(3) { --icon: #8db881; --icon-shade: #6e9b62; }
+[data-accent='colorful'] .tags li:nth-child(4n+2) a { background: #fbe2d3; }
+[data-accent='colorful'] .tags li:nth-child(4n+3) a { background: #e3efdc; }
+[data-accent='colorful'] .tags li:nth-child(4n+4) a { background: #e0ebf7; }
+[data-accent='colorful'] .tags li:nth-child(4n+1) a { background: #fcedc0; }
+
 /* 原本較黃的奶油色 */
 [data-theme='butter'] {
   --bg: #fcf7da; --text: #2a2418; --muted: #7d7356; --pill: #ecd59c; --line: #e6d9a6;
@@ -69,18 +94,18 @@ main.wrap { flex: 1; padding-top: 40px; padding-bottom: 72px; }
 .hero { margin-bottom: 28px; }
 .hero h1 { margin: 0; font-weight: 400; font-size: 3rem; line-height: 1.12; letter-spacing: -.01em; }
 .hero h1 span, .hero h1 em { display: block; }
-.hero h1 em { font-style: italic; }
+.hero h1 em { font-style: italic; color: var(--hero-em, inherit); }
 .hero.small h1 { font-size: 2.4rem; }
-.today { margin: 10px 0 0; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
+.today { color: var(--today, inherit); margin: 10px 0 0; font-size: .82rem; font-weight: 700; letter-spacing: .02em; }
 .intro { margin: 6px 0 0; color: var(--muted); font-size: .92rem; }
 
 /* ===== 圓形＋按鈕 ===== */
 .fab {
   display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
-  border: 1.5px solid var(--line); background: color-mix(in srgb, var(--bar) 70%, transparent);
+  border: 1.5px solid var(--fab-edge, var(--line)); background: color-mix(in srgb, var(--bar) 70%, transparent);
   margin: 0 0 32px; transition: transform .15s, background .15s;
 }
-.fab svg { width: 24px; height: 24px; stroke: var(--icon); stroke-width: 1.6; stroke-linecap: round; fill: none; }
+.fab svg { width: 24px; height: 24px; stroke: var(--fab, var(--icon)); stroke-width: 1.6; stroke-linecap: round; fill: none; }
 .fab:hover { transform: scale(1.06); background: var(--bar); }
 
 /* ===== 文章列（日期膠囊 ─ 細線 ─ 圓點） ===== */
@@ -180,7 +205,7 @@ main.wrap { flex: 1; padding-top: 40px; padding-bottom: 72px; }
     -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
     border: 1.5px solid var(--bar-edge); border-radius: 99px;
   }
-  .tab-bar a { display: grid; place-items: center; width: 64px; height: 56px; border-radius: 99px; text-decoration: none; opacity: .72; transition: opacity .15s; }
+  .tab-bar a { display: grid; place-items: center; width: 64px; height: 56px; border-radius: 99px; text-decoration: none; opacity: .6; transition: opacity .15s; }
   .tab-bar a[aria-current='page'] { opacity: 1; }
   .tab-bar a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 }

@@ -8,6 +8,8 @@ export const SITE = {
   lang: 'zh-Hant',
   /** 配色：cream（米白，預設）、butter（奶油黃）、yellow（亮黃）、gray（灰）、lavender（淡紫） */
   theme: 'cream' as 'cream' | 'butter' | 'yellow' | 'gray' | 'lavender',
+  /** 活力點綴（cream 配色適用）：calm（素雅）、sunny（向日葵黃）、colorful（繽紛粉彩） */
+  accent: 'sunny' as 'calm' | 'sunny' | 'colorful',
   /** 首頁是否顯示「＋」寫文章按鈕（連到後台） */
   showWriteButton: true,
 };
