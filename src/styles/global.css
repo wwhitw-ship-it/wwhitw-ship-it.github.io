@@ -25,7 +25,7 @@
 /* B. 繽紛：每列輪流使用不同粉彩色 */
 [data-theme='cream'][data-accent='colorful'] {
   --pill: #f9e199; --dot: #e3a62b; --dot-ring: #fcedc0; --line: #ece4d3;
-  --accent: #c1603a; --hero-em: #c9633b; --today: #5f8a5a; --fab: #c9633b; --fab-edge: #f1c6ae;
+  --accent: #4f8a62; --hero-em: #4f8a62; --today: #3f86a8; --fab: #4f8a62; --fab-edge: #c5e0cc;
   --code-bg: #f6efe0;
 }
 [data-accent='colorful'] .rows .row:nth-child(5n+2) { --pill: #f9d2bb; --dot: #d9764a; --dot-ring: #fbe2d3; }
