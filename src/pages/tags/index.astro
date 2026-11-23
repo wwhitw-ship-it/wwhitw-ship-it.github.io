@@ -7,9 +7,9 @@ for (const p of await getPosts()) for (const t of p.data.tags) counts.set(t, (co
 const tags = [...counts].sort((a, b) => b[1] - a[1]);
 ---
 <Base title="標籤">
-  <h1>標籤</h1>
+  <section class="hero small"><h1><span>標籤</span><em>Tags</em></h1></section>
   {tags.length === 0 ? <p class="empty">目前沒有標籤。</p> :
     <ul class="tags big">
-      {tags.map(([t, n]) => <li><a href={url(`tags/${encodeURIComponent(t)}/`)}>#{t} <small>{n}</small></a></li>)}
+      {tags.map(([t, n]) => <li><a href={url(`tags/${encodeURIComponent(t)}/`)}>{t}<small>{n}</small></a></li>)}
     </ul>}
 </Base>

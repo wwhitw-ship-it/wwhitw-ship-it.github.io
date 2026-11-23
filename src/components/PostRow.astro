@@ -1,0 +1,17 @@
+---
+import { url } from '../site.config';
+import { pillDate, type Post } from '../lib';
+interface Props { post: Post }
+const { post } = Astro.props;
+---
+<li class="row">
+  <a href={url(`posts/${post.id}/`)}>
+    <time class="pill" datetime={post.data.date.toISOString()}>{pillDate(post.data.date)}</time>
+    <span class="row-text">
+      <span class="row-title">{post.data.title}{post.data.draft && <span class="badge">草稿</span>}</span>
+      {post.data.description && <span class="row-desc">{post.data.description}</span>}
+    </span>
+    <span class="row-line" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+  </a>
+</li>

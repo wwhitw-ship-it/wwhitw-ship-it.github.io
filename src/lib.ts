@@ -26,3 +26,9 @@ export function asset(src?: string | null) {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   return `${base}/${src.replace(/^\//, '')}`;
 }
+
+/** 膠囊標籤用的短日期，例如 2026.11.23 */
+export function pillDate(d: Date) {
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())}`;
+}

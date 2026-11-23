@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import PostCard from '../../components/PostCard.astro';
+import PostRow from '../../components/PostRow.astro';
 import { getPosts, type Post } from '../../lib';
 
 export async function getStaticPaths() {
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 interface Props { tag: string; posts: Post[] }
 const { tag, posts } = Astro.props;
 ---
-<Base title={`#${tag}`}>
-  <h1>#{tag}</h1>
-  <div class="list">{posts.map((post) => <PostCard post={post} />)}</div>
+<Base title={tag}>
+  <section class="hero small"><h1><span>{tag}</span><em>{posts.length} posts</em></h1></section>
+  <ul class="rows">{posts.map((post) => <PostRow post={post} />)}</ul>
 </Base>

@@ -1,15 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
-import PostCard from '../components/PostCard.astro';
-import { SITE } from '../site.config';
+import PostRow from '../components/PostRow.astro';
+import { SITE, url } from '../site.config';
 import { getPosts } from '../lib';
 const posts = await getPosts();
+const today = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
 ---
 <Base>
   <section class="hero">
-    <h1>{SITE.title}</h1>
-    <p>{SITE.description}</p>
+    <h1><span>{SITE.title}</span><em>{SITE.tagline}</em></h1>
+    <p class="today" id="today">{today}</p>
+    <p class="intro">{SITE.description}</p>
   </section>
-  {posts.length === 0 ? <p class="empty">還沒有文章，到 /admin 寫第一篇吧！</p> :
-    <div class="list">{posts.map((post) => <PostCard post={post} />)}</div>}
+  {SITE.showWriteButton && (
+    <a class="fab" href={url('admin/')} title="寫文章" aria-label="寫文章">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+    </a>
+  )}
+  {posts.length === 0 ? <p class="empty">還沒有文章，按上面的 ＋ 寫第一篇吧！</p> :
+    <ul class="rows">{posts.map((post) => <PostRow post={post} />)}</ul>}
+  <script>
+    const el = document.getElementById('today');
+    if (el) el.textContent = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+  </script>
 </Base>

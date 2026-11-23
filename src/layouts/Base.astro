@@ -1,19 +1,35 @@
 ---
+import '@fontsource/libre-baskerville/400.css';
+import '@fontsource/libre-baskerville/400-italic.css';
+import '@fontsource/libre-baskerville/700.css';
+import '@fontsource/noto-serif-tc/400.css';
+import '@fontsource/noto-serif-tc/700.css';
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
 import { SITE, url } from '../site.config';
 
 interface Props { title?: string; description?: string; image?: string }
 const { title, description = SITE.description, image } = Astro.props;
 const fullTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '');
+const section = path.startsWith('/archive') ? 'archive' : path.startsWith('/about') ? 'about'
+  : path.startsWith('/tags') ? 'tags' : 'posts';
+const tabs = [
+  { key: 'posts', label: '文章', href: url(), icon: 'notebook' },
+  { key: 'archive', label: '歸檔', href: url('archive'), icon: 'calendar' },
+  { key: 'about', label: '關於', href: url('about'), icon: 'person' },
+] as const;
 ---
 <!doctype html>
-<html lang={SITE.lang}>
+<html lang={SITE.lang} data-theme={SITE.theme}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#fcf7da" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
     <link rel="alternate" type="application/rss+xml" title={SITE.title} href={url('rss.xml')} />
@@ -29,10 +45,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href={url()}>{SITE.title}</a>
-        <nav>
-          <a href={url()}>文章</a>
-          <a href={url('tags')}>標籤</a>
-          <a href={url('about')}>關於</a>
+        <nav class="top-nav">
+          <a href={url()} aria-current={section === 'posts' ? 'page' : undefined}>文章</a>
+          <a href={url('archive')} aria-current={section === 'archive' ? 'page' : undefined}>歸檔</a>
+          <a href={url('tags')} aria-current={section === 'tags' ? 'page' : undefined}>標籤</a>
+          <a href={url('about')} aria-current={section === 'about' ? 'page' : undefined}>關於</a>
         </nav>
       </div>
     </header>
@@ -45,5 +62,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <a href={url('rss.xml')}>RSS</a>
       </div>
     </footer>
+    <nav class="tab-bar" aria-label="主要導覽">
+      {tabs.map((t) => (
+        <a href={t.href} aria-current={section === t.key ? 'page' : undefined} aria-label={t.label}>
+          <Icon name={t.icon} />
+          <span>{t.label}</span>
+        </a>
+      ))}
+    </nav>
   </body>
 </html>

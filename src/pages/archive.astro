@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PostRow from '../components/PostRow.astro';
+import { getPosts, type Post } from '../lib';
+const groups = new Map<string, Post[]>();
+for (const p of await getPosts()) {
+  const key = `${p.data.date.getFullYear()} 年 ${p.data.date.getMonth() + 1} 月`;
+  groups.set(key, [...(groups.get(key) ?? []), p]);
+}
+---
+<Base title="歸檔">
+  <section class="hero small"><h1><span>歸檔</span><em>Archive</em></h1></section>
+  {[...groups].map(([month, posts]) => (
+    <section class="group">
+      <h2 class="group-title">{month}<small>{posts.length} 篇</small></h2>
+      <ul class="rows">{posts.map((post) => <PostRow post={post} />)}</ul>
+    </section>
+  ))}
+</Base>
