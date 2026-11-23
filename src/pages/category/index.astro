@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostRow from '../../components/PostRow.astro';
+import { CATEGORIES, url } from '../../site.config';
+import { getPosts } from '../../lib';
+const posts = await getPosts();
+const groups = CATEGORIES.map((c) => ({ ...c, posts: posts.filter((p) => p.data.category === c.name) }))
+  .filter((g) => g.posts.length > 0);
+const other = posts.filter((p) => !CATEGORIES.some((c) => c.name === p.data.category));
+---
+<Base title="分類">
+  <section class="hero small"><h1><span>分類</span><em>Categories</em></h1></section>
+  {groups.map((g) => (
+    <section class="group" data-color={g.color}>
+      <h2 class="group-title"><span class="legend-dot" aria-hidden="true"></span>
+        <a href={url(`category/${encodeURIComponent(g.name)}/`)}>{g.name}</a><small>{g.posts.length} 篇</small></h2>
+      <ul class="rows">{g.posts.map((post) => <PostRow post={post} />)}</ul>
+    </section>
+  ))}
+  {other.length > 0 && (
+    <section class="group" data-color="none">
+      <h2 class="group-title"><span class="legend-dot" aria-hidden="true"></span>未分類<small>{other.length} 篇</small></h2>
+      <ul class="rows">{other.map((post) => <PostRow post={post} />)}</ul>
+    </section>
+  )}
+</Base>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostRow from '../../components/PostRow.astro';
+import CategoryLegend from '../../components/CategoryLegend.astro';
+import { CATEGORIES } from '../../site.config';
+import { getPosts, type Post } from '../../lib';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return CATEGORIES.map((c) => ({
+    params: { name: c.name },
+    props: { name: c.name, all: posts, posts: posts.filter((p) => p.data.category === c.name) },
+  }));
+}
+interface Props { name: string; all: Post[]; posts: Post[] }
+const { name, all, posts } = Astro.props;
+---
+<Base title={name}>
+  <section class="hero small"><h1><span>{name}</span><em>{posts.length} posts</em></h1></section>
+  <CategoryLegend posts={all} current={name} />
+  {posts.length === 0 ? <p class="empty">這個分類還沒有文章。</p> :
+    <ul class="rows">{posts.map((post) => <PostRow post={post} />)}</ul>}
+</Base>

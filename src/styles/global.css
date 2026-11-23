@@ -1,44 +1,33 @@
 /* ===== 配色（在 src/site.config.ts 的 theme 切換） ===== */
 :root, [data-theme='cream'] {
+  /* 土壤與樹葉：穩重的基底 */
   --bg: #faf7ef;        /* 背景：米白紙張色 */
-  --text: #2d2924;      /* 文字 */
-  --muted: #8a8174;     /* 次要文字 */
-  --pill: #efe6d2;      /* 日期膠囊 */
+  --text: #2f261e;      /* 文字：深咖啡 */
+  --heading: #3b2a1e;   /* 大標題：深咖啡 */
+  --hero-em: #2f4f3e;   /* 斜體副標：墨綠 */
+  --today: #2f4f3e;     /* 日期 */
+  --muted: #857866;     /* 次要文字 */
+  --pill: #ece4d3;      /* 未分類膠囊 */
   --line: #e7e0d1;      /* 細線 */
-  --dot: #b9a27c;       /* 小圓點 */
-  --dot-ring: #ece3cf;  /* 小圓點外圈 */
+  --dot: #9c8566;       /* 未分類圓點 */
+  --dot-ring: #f0e9dc;
   --bar: #fdfbf6;       /* 底部導覽列 */
-  --bar-edge: #e9e2d3;
-  --icon: #cdb791;      /* 圖示 */
-  --icon-shade: #b09a72;
+  --bar-edge: #e6dfcf;
+  --icon: #8fa595;      /* 圖示：淺樹葉綠 */
+  --icon-shade: #2f4f3e;
   --icon-line: #fbf8f1;
-  --accent: #8b6f45;    /* 連結 */
+  --accent: #2f4f3e;    /* 連結：墨綠 */
+  --fab: #2f4f3e; --fab-edge: #c9d6cc;
   --code-bg: #f3eee3;
 }
-/* ===== 活力點綴（在 src/site.config.ts 的 accent 切換，只作用於 cream 配色） ===== */
-/* A. 向日葵：單一亮黃強調色 */
-[data-theme='cream'][data-accent='sunny'] {
-  --pill: #f8df8f; --dot: #e4a72a; --dot-ring: #fcedbd; --line: #ece3cc;
-  --icon: #f0c04a; --icon-shade: #d99a1c; --accent: #b5700f; --hero-em: #d68a10;
-  --today: #b5700f; --fab: #e4a72a; --fab-edge: #f3d27a; --code-bg: #fbf1d2;
-}
-/* B. 繽紛：每列輪流使用不同粉彩色 */
-[data-theme='cream'][data-accent='colorful'] {
-  --pill: #f9e199; --dot: #e3a62b; --dot-ring: #fcedc0; --line: #ece4d3;
-  --accent: #4f8a62; --hero-em: #4f8a62; --today: #3f86a8; --fab: #4f8a62; --fab-edge: #c5e0cc;
-  --code-bg: #f6efe0;
-}
-[data-accent='colorful'] .rows .row:nth-child(5n+2) { --pill: #f9d2bb; --dot: #d9764a; --dot-ring: #fbe2d3; }
-[data-accent='colorful'] .rows .row:nth-child(5n+3) { --pill: #d3e6c8; --dot: #6e9b62; --dot-ring: #e3efdc; }
-[data-accent='colorful'] .rows .row:nth-child(5n+4) { --pill: #cfe0f2; --dot: #5b88b8; --dot-ring: #e0ebf7; }
-[data-accent='colorful'] .rows .row:nth-child(5n+5) { --pill: #e3d5f0; --dot: #8c6bb3; --dot-ring: #eee5f6; }
-[data-accent='colorful'] .tab-bar a:nth-child(1) { --icon: #efbd45; --icon-shade: #d99a1c; }
-[data-accent='colorful'] .tab-bar a:nth-child(2) { --icon: #ee9a72; --icon-shade: #d9764a; }
-[data-accent='colorful'] .tab-bar a:nth-child(3) { --icon: #8db881; --icon-shade: #6e9b62; }
-[data-accent='colorful'] .tags li:nth-child(4n+2) a { background: #fbe2d3; }
-[data-accent='colorful'] .tags li:nth-child(4n+3) a { background: #e3efdc; }
-[data-accent='colorful'] .tags li:nth-child(4n+4) a { background: #e0ebf7; }
-[data-accent='colorful'] .tags li:nth-child(4n+1) a { background: #fcedc0; }
+/* 花朵：分類顏色 */
+[data-color='yellow'] { --pill: #f9e199; --dot: #e3a62b; --dot-ring: #fcedc0; }
+[data-color='peach']  { --pill: #f9d2bb; --dot: #d9764a; --dot-ring: #fbe2d3; }
+[data-color='rose']   { --pill: #f6d0d8; --dot: #c8607a; --dot-ring: #fae3e8; }
+[data-color='sage']   { --pill: #d3e6c8; --dot: #6e9b62; --dot-ring: #e3efdc; }
+[data-color='sky']    { --pill: #cfe0f2; --dot: #5b88b8; --dot-ring: #e0ebf7; }
+[data-color='lilac']  { --pill: #e3d5f0; --dot: #8c6bb3; --dot-ring: #eee5f6; }
+[data-color='none']   { --pill: #ece4d3; --dot: #9c8566; --dot-ring: #f0e9dc; }
 
 /* 原本較黃的奶油色 */
 [data-theme='butter'] {
@@ -92,7 +81,7 @@ main.wrap { flex: 1; padding-top: 40px; padding-bottom: 72px; }
 
 /* ===== 大標題（第一行正體、第二行斜體） ===== */
 .hero { margin-bottom: 28px; }
-.hero h1 { margin: 0; font-weight: 400; font-size: 3rem; line-height: 1.12; letter-spacing: -.01em; }
+.hero h1 { color: var(--heading, var(--text)); margin: 0; font-weight: 400; font-size: 3rem; line-height: 1.12; letter-spacing: -.01em; }
 .hero h1 span, .hero h1 em { display: block; }
 .hero h1 em { font-style: italic; color: var(--hero-em, inherit); }
 .hero.small h1 { font-size: 2.4rem; }
@@ -138,6 +127,16 @@ main.wrap { flex: 1; padding-top: 40px; padding-bottom: 72px; }
 .group-title { font-size: .95rem; font-weight: 700; margin: 0 0 6px; display: flex; gap: 10px; align-items: baseline; }
 .group-title small { color: var(--muted); font-weight: 400; font-size: .8rem; }
 
+/* ===== 分類圖例 ===== */
+.legend { list-style: none; padding: 0; margin: -8px 0 22px; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.legend a { display: inline-flex; align-items: center; gap: 7px; font-size: .82rem; color: var(--muted); text-decoration: none; padding: 2px 0; }
+.legend a:hover, .legend a[aria-current='page'] { color: var(--text); }
+.legend a[aria-current='page'] { font-weight: 700; }
+.legend-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 0 3px var(--dot-ring); }
+.group-title .legend-dot { align-self: center; }
+.group-title a { color: inherit; text-decoration: none; }
+.cat-chip { display: inline-flex; align-items: center; gap: 7px; color: var(--text); text-decoration: none; }
+
 /* ===== 標籤 ===== */
 .tags { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .tags a {
@@ -152,12 +151,12 @@ main.wrap { flex: 1; padding-top: 40px; padding-bottom: 72px; }
 /* ===== 文章內頁 ===== */
 .post header { margin-bottom: 32px; }
 .back { display: inline-block; font-size: .85rem; color: var(--muted); text-decoration: none; margin-bottom: 18px; }
-.post h1 { font-size: 2.1rem; font-weight: 700; line-height: 1.4; margin: 0 0 14px; }
+.post h1 { color: var(--heading, var(--text)); font-size: 2.1rem; font-weight: 700; line-height: 1.4; margin: 0 0 14px; }
 .meta { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .85rem; margin: 0; }
 .meta .pill { color: var(--text); min-width: 0; }
 .cover { width: 100%; border-radius: 18px; margin-bottom: 32px; }
 .prose { overflow-wrap: anywhere; font-size: 1.02rem; }
-.prose h2 { font-size: 1.45rem; margin-top: 2.2em; line-height: 1.45; }
+.prose h2 { color: var(--heading, var(--text)); font-size: 1.45rem; margin-top: 2.2em; line-height: 1.45; }
 .prose h3 { font-size: 1.15rem; margin-top: 1.8em; }
 .prose img { max-width: 100%; height: auto; border-radius: 14px; }
 .prose blockquote { margin: 1.6em 0; padding: 6px 22px; border-left: 3px solid var(--dot); color: var(--muted); }

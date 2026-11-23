@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostRow from '../components/PostRow.astro';
+import CategoryLegend from '../components/CategoryLegend.astro';
 import { SITE, url } from '../site.config';
 import { getPosts } from '../lib';
 const posts = await getPosts();
@@ -17,6 +18,7 @@ const today = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: '
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
     </a>
   )}
+  <CategoryLegend posts={posts} />
   {posts.length === 0 ? <p class="empty">還沒有文章，按上面的 ＋ 寫第一篇吧！</p> :
     <ul class="rows">{posts.map((post) => <PostRow post={post} />)}</ul>}
   <script>

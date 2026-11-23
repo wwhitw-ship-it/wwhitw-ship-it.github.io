@@ -51,6 +51,14 @@ git push -u origin main
 
 勾選「草稿」的文章不會出現在公開網站上。
 
+### 文章分類與顏色
+每篇文章可以選一個「分類」，分類決定文章在列表中的顏色（日期膠囊和小圓點）。
+預設分類：生活（黃）、旅行（蜜桃）、閱讀（綠）、學習（藍）、心情（紫）。
+
+想新增或修改分類，要改兩個地方：
+1. `src/site.config.ts` 的 `CATEGORIES`（名稱與顏色）
+2. `public/admin/config.yml` 裡「分類」欄位的 `options`（後台選單）
+
 > 也可以直接在 `src/content/posts/` 新增 `.md` 檔案寫文章，格式參考裡面的範例。
 
 ---
@@ -99,7 +107,7 @@ npm run dev
 
 ```
 src/content/posts/     文章（Markdown）
-src/site.config.ts     部落格名稱、簡介、作者
+src/site.config.ts     部落格名稱、簡介、作者、分類顏色
 src/pages/about.astro  「關於」頁面
 src/styles/global.css  外觀樣式
 public/admin/          網頁後台設定

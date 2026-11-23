@@ -26,6 +26,7 @@ collections:
     fields:
       - { label: 標題, name: title, widget: string }
       - { label: 發佈日期, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 分類, name: category, widget: select, required: false, options: [生活, 旅行, 閱讀, 學習, 心情], hint: 分類決定文章在列表中的顏色 }
       - { label: 摘要, name: description, widget: text, required: false, hint: 顯示在文章列表與搜尋結果 }
       - { label: 標籤, name: tags, widget: list, required: false, hint: 用逗號分隔 }
       - { label: 封面圖片, name: cover, widget: image, required: false }

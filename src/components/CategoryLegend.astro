@@ -1,0 +1,18 @@
+---
+import { CATEGORIES, url } from '../site.config';
+import type { Post } from '../lib';
+interface Props { posts: Post[]; current?: string }
+const { posts, current } = Astro.props;
+const used = CATEGORIES.filter((c) => posts.some((p) => p.data.category === c.name));
+---
+{used.length > 0 && (
+  <ul class="legend" aria-label="分類">
+    {used.map((c) => (
+      <li data-color={c.color}>
+        <a href={url(`category/${encodeURIComponent(c.name)}/`)} aria-current={current === c.name ? 'page' : undefined}>
+          <span class="legend-dot" aria-hidden="true"></span>{c.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

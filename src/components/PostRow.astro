@@ -1,10 +1,10 @@
 ---
-import { url } from '../site.config';
+import { url, categoryColor } from '../site.config';
 import { pillDate, type Post } from '../lib';
 interface Props { post: Post }
 const { post } = Astro.props;
 ---
-<li class="row">
+<li class="row" data-color={categoryColor(post.data.category)}>
   <a href={url(`posts/${post.id}/`)}>
     <time class="pill" datetime={post.data.date.toISOString()}>{pillDate(post.data.date)}</time>
     <span class="row-text">
@@ -12,6 +12,6 @@ const { post } = Astro.props;
       {post.data.description && <span class="row-desc">{post.data.description}</span>}
     </span>
     <span class="row-line" aria-hidden="true"></span>
-    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true" title={post.data.category ?? undefined}></span>
   </a>
 </li>

@@ -2,6 +2,7 @@
 title: 哈囉，世界！這是我的第一篇文章
 date: 2026-11-23
 description: 部落格開張了。這篇文章示範可以使用的格式。
+category: 生活
 tags:
   - 公告
   - 教學

@@ -2,6 +2,7 @@
 title: 如何在後台寫文章
 date: 2026-11-20
 description: 打開 /admin，登入 GitHub，按「新增文章」就能開始寫。
+category: 學習
 tags:
   - 教學
 ---

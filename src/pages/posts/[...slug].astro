@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { render } from 'astro:content';
-import { url } from '../../site.config';
+import { url, categoryColor } from '../../site.config';
 import { getPosts, pillDate, readingTime, asset, type Post } from '../../lib';
 
 export async function getStaticPaths() {
@@ -17,12 +17,17 @@ const { Content } = await render(post);
 const cover = asset(post.data.cover);
 ---
 <Base title={post.data.title} description={post.data.description} image={cover || undefined}>
-  <article class="post">
+  <article class="post" data-color={categoryColor(post.data.category)}>
     <header>
       <a class="back" href={url()}>← 所有文章</a>
       <h1>{post.data.title}</h1>
       <p class="meta">
         <time class="pill" datetime={post.data.date.toISOString()}>{pillDate(post.data.date)}</time>
+        {post.data.category && (
+          <a class="cat-chip" data-color={categoryColor(post.data.category)} href={url(`category/${encodeURIComponent(post.data.category)}/`)}>
+            <span class="legend-dot" aria-hidden="true"></span>{post.data.category}
+          </a>
+        )}
         <span>{readingTime(post.body)} 分鐘閱讀</span>
       </p>
       {post.data.tags.length > 0 && (
