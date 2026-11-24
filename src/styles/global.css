@@ -208,3 +208,12 @@ main.wrap { flex: 1; padding-top: 40px; padding-bottom: 72px; }
   .tab-bar a[aria-current='page'] { opacity: 1; }
   .tab-bar a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 }
+
+/* ===== 關於我 ===== */
+.about-lead { margin: 0 0 40px; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); }
+.about-lead p { margin: 0; font-size: 1.45rem; line-height: 1.6; color: var(--heading, var(--text)); }
+.about-lead .about-ask { color: var(--accent); font-size: 1.15rem; margin-top: 6px; }
+.about h2 { margin-top: 0; }
+.about-end { margin-top: 2em; font-size: 1.15rem; color: var(--heading, var(--text)); font-weight: 700; }
+.about-end em { color: var(--accent); font-weight: 400; font-family: 'Libre Baskerville', var(--serif); }
+@media (max-width: 720px) { .about-lead p { font-size: 1.25rem; } }

@@ -4,7 +4,7 @@ export const SITE = {
   /** 首頁標題第二行（斜體），建議用英文，例如 Journal、Notes、Diary */
   tagline: 'Journal',
   description: '記錄生活、想法與學習筆記。',
-  author: '作者名稱',
+  author: 'Betty',
   lang: 'zh-Hant',
   /** 配色：cream（米白＋大地色，預設）、butter（奶油黃）、yellow（亮黃）、gray（灰）、lavender（淡紫） */
   theme: 'cream' as 'cream' | 'butter' | 'yellow' | 'gray' | 'lavender',
